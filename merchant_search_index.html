@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>بحث الميرشنت</title>
+</head>
+<body>
+  <h1>بحث عن الميرشنت بالمنطقة</h1>
+  <input type="text" id="searchInput" placeholder="اكتب اسم المنطقة">
+  <button onclick="search()">بحث</button>
+  <ul id="results"></ul>
+
+  <script>
+    // مثال للبيانات (ممكن تغيرها بالبيانات من الشيت)
+    const merchants = [
+      {name: "متجر 1", city: "القاهرة"},
+      {name: "متجر 2", city: "الجيزة"},
+      {name: "متجر 3", city: "القاهرة"},
+      {name: "متجر 4", city: "الإسكندرية"}
+    ];
+
+    function search() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const results = merchants.filter(m => m.city.toLowerCase().includes(input));
+      const resultsList = document.getElementById('results');
+      resultsList.innerHTML = '';
+      if(results.length === 0) {
+        resultsList.innerHTML = '<li>لا توجد نتائج</li>';
+      } else {
+        results.forEach(m => {
+          const li = document.createElement('li');
+          li.textContent = m.name + " - " + m.city;
+          resultsList.appendChild(li);
+        });
+      }
+    }
+  </script>
+</body>
+</html>
